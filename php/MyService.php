@@ -9,7 +9,7 @@ class Service {
         $dbObject = new Database();
         $dbConnection = $dbObject->getDatabaseConnection();
         
-        $sql = "SELECT * FROM item";
+        $sql = "SELECT * FROM ITEM";
 
         $stmt = $dbConnection->prepare($sql);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, 'Item');

@@ -4,10 +4,10 @@ class Database {
 
 	public function getDatabaseConnection(){
 
-		$dbHost = "localhost:3306";
-		$dbName = "arlington herbal shop";
-		$dbUser = "root";
-		$dbPassword = "";
+		$dbHost = "db";
+		$dbName = "shop";
+		$dbUser = "customer";
+		$dbPassword = "password";
 
 		try {
 			// PDO in PHP (PHP Data Objects)
