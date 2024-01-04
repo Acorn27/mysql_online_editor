@@ -1,0 +1,32 @@
+version: '3'
+services:
+  php:
+    container_name: php-apache
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - "./php:/var/www/html"
+    ports:
+      - 80:80
+  db:
+    container_name: mysql-database
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=BooksAndGames
+      - MYSQL_USER=huy
+      - MYSQL_PASSWORD=password123
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    volumes:
+     - "./mySQL:/docker-entrypoint-initdb.d" 
+  myphpadmin:
+    container_name: myphp-admin
+    image: phpmyadmin/phpmyadmin
+    ports: 
+      - 8001:80
+    environment:
+      - PMA_host=db
+      - PMA_PORT=3306
+
