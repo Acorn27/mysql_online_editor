@@ -1,4 +1,3 @@
-<!-- Author: Mai Tran - 1002092849. Co-Author: Samuel Horn - 1001883723 -->
 <?php
 
 require './Database.php';
@@ -41,15 +40,15 @@ class Service {
 
     function findByName() {
     
-        $iName = $_POST['iName'];
+        $Iname = "%".$_POST['Iname']."%";
         $dbObject = new Database();
         $dbConnection = $dbObject->getDatabaseConnection();
 
-        $sql = "SELECT * FROM item WHERE (`Iname` = ?)";
+        $sql = "SELECT * FROM item WHERE (`Iname` LIKE ?)";
         $stmt = $dbConnection->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Item');
 
-        if ($stmt->execute([$iName])) {
+        if ($stmt->execute([$Iname])) {
             return $stmt->fetchAll();
         } else {
             return 'Failed';  
@@ -58,17 +57,16 @@ class Service {
 
     function insertItem() {
     
-        $iId = $_POST['iId'];
         $iName = $_POST['iName'];
         $iSprice = $_POST['iSprice'];
 
         $dbObject = new Database();
         $dbConnection = $dbObject->getDatabaseConnection();
 
-        $sql = "INSERT INTO item (`iId`, `Iname`, `Sprice`) VALUES (?, ?,?)";
+        $sql = "INSERT INTO item (`Iname`, `Sprice`) VALUES (?,?)";
         $stmt = $dbConnection->prepare($sql);
 
-        if ($stmt->execute([$iId, $iName, $iSprice])) {
+        if ($stmt->execute([$iName, $iSprice])) {
         } else {
             return 'Failed';  
         }

@@ -1,4 +1,3 @@
-<!-- Author: Mai Tran - 1002092849. Co-Author: Samuel Horn - 1001883723 -->
 <?php
 if (isset($_POST['choice'])) {
     $option = $_POST['choice'];
@@ -26,7 +25,7 @@ if (isset($_POST['choice'])) {
     }
     
     if (isset($redirectUrl)) {
-        header("Location: http://localhost/Mine/submission/$redirectUrl");
+        header("Location: http://localhost/submission/$redirectUrl");
     }
 } else {
     echo <<<END

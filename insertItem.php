@@ -1,4 +1,3 @@
-<!-- Author: Mai Tran - 1002092849. Co-Author: Samuel Horn - 1001883723 -->
 <?php
 require './MyService.php';
 $service = new Service();
@@ -6,17 +5,17 @@ $items = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["submit"])) {
-        $iId = isset($_POST["iId"]) ? $_POST["iId"] : "";
+        //$iId = isset($_POST["iId"]) ? $_POST["iId"] : "";
         $iName = isset($_POST["iName"]) ? $_POST["iName"] : "";
         $iSprice = isset($_POST["iSprice"]) ? $_POST["iSprice"] : "";
         
         // Validate and process the form data
-        if ($iId && $iName && $iSprice) {
+        if ($iName && $iSprice) {
             $service->insertItem();
             $items = $service->fetchAllItems();
         }
     } elseif (isset($_POST["exit"])) {
-        header("Location: http://localhost/Mine/submission/menu.php");
+        header("Location: http://localhost/submission/menu.php");
     }
 } else {
     $items = $service->fetchAllItems();
@@ -36,11 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post">
             <fieldset>
                 <legend>Insert New Item</legend>
-
-                <div class="input-group">
-                    <label for="iId">Item ID:</label>
-                    <input type="text" name="iId" id="iId" placeholder="E.g., 123">
-                </div>
                 <div class="input-group">
                     <label for="iName">Item Name:</label>
                     <input type="text" name="iName" id="iName" placeholder="E.g., Product Name">

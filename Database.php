@@ -1,5 +1,3 @@
-<!-- Author: Mai Tran - 1002092849. Co-Author: Samuel Horn - 1001883723 -->
-
 <?php
 
 class Database {
@@ -7,7 +5,7 @@ class Database {
 	public function getDatabaseConnection(){
 
 		$dbHost = "localhost:3306";
-		$dbName = "project";
+		$dbName = "arlington herbal shop";
 		$dbUser = "root";
 		$dbPassword = "";
 

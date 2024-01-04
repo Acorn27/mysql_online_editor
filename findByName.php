@@ -1,4 +1,3 @@
-<!-- Author: Mai Tran - 1002092849. Co-Author: Samuel Horn - 1001883723 -->
 <?php
 require './MyService.php';
 $service = new Service();
@@ -6,10 +5,10 @@ $items = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["submit"])) {
-        $iName = isset($_POST["iName"]) ? $_POST["iName"] : "";
-        $items = $service->findByName($iName);
+        $Iname = isset($_POST["Iname"]) ? $_POST["Iname"] : "";
+        $items = $service->findByName($Iname);
     } elseif (isset($_POST["exit"])) {
-        header("Location: http://localhost/Mine/submission/menu.php");
+        header("Location: http://localhost/submission/menu.php");
     }
 }
 ?>
@@ -29,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <legend>Find Item by Name</legend>
 
                 <div class="input-group">
-                    <label for="iName">Enter item's name:</label>
-                    <input type="text" name="iName" id="iName" placeholder="E.g., Product Name">
+                    <label for="Iname">Enter item's name:</label>
+                    <input type="text" name="Iname" id="Iname" placeholder="E.g., Product Name">
                 </div>
 
                 <div class="button-group">

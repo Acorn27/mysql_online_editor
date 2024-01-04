@@ -1,4 +1,3 @@
-<!-- Author: Mai Tran - 1002092849. Co-Author: Samuel Horn - 1001883723 -->
 <?php
 require './MyService.php';
 $service = new Service();
@@ -14,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $items = $service->fetchAllItems();
         }
     } elseif (isset($_POST["exit"])) {
-        header("Location: http://localhost/Mine/submission/menu.php");
+        header("Location: http://localhost/submission/menu.php");
     }
 }
 ?>
