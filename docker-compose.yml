@@ -1,5 +1,14 @@
 version: '3'
 services:
+  flask:
+    container_name: flask-app
+    build: 
+      context: ./pythonApp
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 5000:5000
   php:
     container_name: php-apache
     build:
@@ -15,9 +24,10 @@ services:
     container_name: mysql-database
     image: mysql:latest
     environment:
-      - MYSQL_DATABASE=BooksAndGames
+      - MYSQL_DATABASE=exam
       - MYSQL_USER=huy
       - MYSQL_PASSWORD=password123
+      - MYSQL_ROOT_PASSWORD=None
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
      - "./mySQL:/docker-entrypoint-initdb.d" 
