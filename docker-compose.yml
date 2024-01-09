@@ -9,6 +9,8 @@ services:
       - db
     ports:
       - 5000:5000
+    volumes:
+      - "./pythonApp:/app"
   php:
     container_name: php-apache
     build:

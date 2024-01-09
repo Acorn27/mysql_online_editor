@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request
 from flask_mysqldb import MySQL
-
 app = Flask(__name__)
 
 # mySQL configurations
@@ -24,7 +23,8 @@ def process_query():
         cursor = mysql.connection.cursor()
         cursor.execute(raw_query)
         result = cursor.fetchall()
-        return render_template('index.html', raw_query=raw_query, result=request)
+        #result = pd.DataFrame(init_result)
+        return render_template('index.html', raw_query=raw_query, result=result)
 
 if __name__=='__main__':
     app.run(debug=True, use_reloader=True)
