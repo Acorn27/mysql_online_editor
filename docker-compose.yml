@@ -25,6 +25,7 @@ services:
   db:
     container_name: mysql-database
     image: mysql:latest
+    command: --lower_case_table_names=1
     environment:
       - MYSQL_DATABASE=exam
       - MYSQL_USER=huy
