@@ -2,7 +2,7 @@ version: '3'
 services:
   flask:
     container_name: flask-app
-    build: 
+    build:
       context: ./pythonApp
       dockerfile: Dockerfile
     depends_on:
@@ -21,7 +21,7 @@ services:
     volumes:
       - "./php:/var/www/html"
     ports:
-      - 80:80
+      - 90:80
   db:
     container_name: mysql-database
     image: mysql:latest
@@ -32,13 +32,12 @@ services:
       - MYSQL_ROOT_PASSWORD=None
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
-     - "./mySQL:/docker-entrypoint-initdb.d" 
+      - "./mySQL:/docker-entrypoint-initdb.d"
   myphpadmin:
     container_name: myphp-admin
     image: phpmyadmin/phpmyadmin
-    ports: 
+    ports:
       - 8001:80
     environment:
       - PMA_host=db
       - PMA_PORT=3306
-
