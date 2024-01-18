@@ -58,25 +58,48 @@
 </head>
 
 <body>
+  <section id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+
   <section id="result">
     <div class="container">
       <div class="row mt-4">
         <div class="col-md-6">
-          <h4>MySQL Editor</h4>
-          <form method="POST" action="/process_query">
+          <h6 class="display-6" align="left">MySQL Editor</h6>
+          <form method="POST" id='form' action="/process_query">
             <textarea name="raw_query" id="editor" class="form-control" rows="8"></textarea>
             <div class="text-end mt-2">
-              <button type="reset" class="btn btn-outline-danger">
-                Clear
+              <button type="submit" class="btn btn-outline-danger" name="reset-bttn">
+                reset
               </button>
-              <button type="submit" class="btn btn-outline-success">
+              <button type="button" class="btn btn-outline-info" name="paste-bttn" onclick="pasteClipboard()">
+                Paste
+              </button>
+              <button type=" submit" class="btn btn-outline-success" name="submit-bttn">
                 Run
               </button>
             </div>
           </form>
         </div>
         <div class="col-md-6">
-          <h4>Previous Inputs</h4>
+          <h6 class="display-6"> Inputs History</h6>
           <div class="scrollable-list">
             <ul class="list-group" id="copiableList">
               {% for input in user_inputs %}
@@ -93,9 +116,11 @@
 
   <section id="table">
     <div class="container">
-      <h2>Query result</h2>
+      <h6 class="display-6">Query result:</h6>
       {% if error_message %}
-      <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+      <div class="alert alert-danger" role="alert">
+        <p class="fst-italic mb-1"> {{ error_message }} </p>
+      </div>
       {% elif table %}
       <div class="container">{{ table | safe }}</div>
       {% else %}
@@ -106,6 +131,7 @@
 
   <script type="text/javascript">
     var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+      value: "SELECT * FROM employee;",
       mode: "sql",
       theme: "monokai",
       lineNumbers: true,
@@ -169,6 +195,18 @@
         });
       });
     });
+
+    function pasteClipboard() {
+
+      navigator.clipboard.readText()
+        .then(text => {
+          document.getElementById("editor").value = text;
+          document.querySelector('.CodeMirror').CodeMirror.setValue(text)
+        })
+        .catch(err => {
+          document.getElementById("editor").value = 'Failed to read clipboard contents: ' + err;
+        });
+    }
   </script>
 </body>
 

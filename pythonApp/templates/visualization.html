@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Structure</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <!-- jsTree CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css"
+    />
+    <style>
+      /* Custom styles for the database structure */
+      body {
+        background-color: #f8f9fa;
+        padding: 20px;
+      }
+
+      .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      #database-structure {
+        margin-top: 20px;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #dee2e6;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center mb-4">Database Structure</h2>
+      <div id="database-structure"></div>
+
+      <h4 class="mt-4">Sample Tables in Database 1</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Table Name</th>
+            <th>Attributes</th>
+            <th>Foreign Key</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i class="fas fa-table"></i> Users</td>
+            <td>User_ID (PK), Username, Email</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-table"></i> Orders</td>
+            <td>
+              Order_ID (PK), User_ID (FK), Product_ID (FK), Quantity, Order_Date
+            </td>
+            <td>References Users(User_ID)</td>
+          </tr>
+          <!-- Add more tables as needed -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+    <!-- jsTree JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+    <script>
+      // Replace this with your actual database structure data
+      var databaseStructure = [
+        {
+          text: '<i class="fas fa-database"></i> Database 1',
+          children: [
+            {
+              text: '<i class="fas fa-table"></i> Users',
+              children: [{ text: "User_ID (PK), Username, Email" }],
+            },
+            {
+              text: '<i class="fas fa-table"></i> Orders',
+              children: [
+                {
+                  text: "Order_ID (PK), User_ID (FK), Product_ID (FK), Quantity, Order_Date",
+                },
+                { text: "References Users(User_ID)" },
+              ],
+            },
+          ],
+        },
+        {
+          text: '<i class="fas fa-database"></i> Database 2',
+          children: [
+            {
+              text: '<i class="fas fa-table"></i> Table 3',
+              children: [
+                { text: '<i class="fas fa-columns"></i> Column 3' },
+                { text: '<i class="fas fa-columns"></i> Column 4' },
+              ],
+            },
+          ],
+        },
+        // Add more databases, tables, and columns as needed
+      ];
+
+      // Initialize jsTree
+      $("#database-structure").jstree({
+        core: {
+          data: databaseStructure,
+          themes: {
+            icons: false,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
